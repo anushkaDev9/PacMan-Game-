@@ -1,31 +1,37 @@
-let positionLeft=0
-let divWidth
-let direction=0
-function load(){
-    divWidth=document.getElementById('game')
-console.log(divWidth)
-console.log(divWidth.offsetWidth)
-}
-function run(){
-    let img=document.getElementById('pacMan')
-    let imgWidth=img.width 
-    direction=reverse(direction,positionLeft,imgWidth,divWidth)
-    if(direction){
-        positionLeft-=20;
-        img.style.marginLeftt=positionLeft+'px'
-    }else{
-            positionLeft+=20;
-            img.style.marginLeft=positionLeft+'px'
-    }
-}
-setInterval(run,300)
-function reverse(direction,positionLeft,imgWidth,divWidth){
-    if(positionLeft+imgWidth>=divWidth){
-       alert("hello")
-    }
-    if(positionLeft==0){
-       direction=0
+var pos = 0;
+let pageWidth = window.innerWidth;
 
+var direction = 0;
+
+
+function Run() {
+let divWidth=document.getElementById('game').offsetWidth
+console.log(divWidth)
+  let img = document.getElementById("pacMan");
+  let imgWidth = img.width;
+  focus = (focus + 1) % 2;
+  direction = checkPageBounds(direction, imgWidth, pos, pageWidth);
+  if (direction) {
+    pos=0
+    direction=0
+    if(direction==0){
+           pos+=30
+           img.style.marginLeft=pos+"px"
     }
-return direction
+  }else{
+    pos+=30
+           img.style.marginLeft=pos+"px"
+  }
+}
+setInterval(Run, 300);
+
+function checkPageBounds(direction, imgWidth, pos, divWidth) {
+  if (direction == 0 && pos + imgWidth >(divWidth-200)) {
+    console.log(pos + imgWidth)
+    direction = 1;
+  }
+
+  if (direction == 1 && pos < 0) direction = 0;
+
+  return direction;
 }
