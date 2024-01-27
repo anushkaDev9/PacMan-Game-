@@ -1,6 +1,7 @@
 var pos = 0;
 let pageWidth = window.innerWidth;
-
+let focus=0
+var pictures=['PacMan1.png','PacMan2.png']
 var direction = 0;
 function get_random_color() {
     var letters = 'ABCDE'.split('');
@@ -20,6 +21,7 @@ console.log(divWidth)
   let imgWidth = img.width;
   focus = (focus + 1) % 2;
   direction = checkPageBounds(direction, imgWidth, pos, pageWidth);
+  
   if (direction) {
     color=get_random_color()
     console.log(color)
